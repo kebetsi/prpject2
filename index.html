@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="libraries/p5.js"></script>
+<script src="libraries/p5.dom.js"></script>
+<script src="libraries/p5.sound.js"></script>
+<title>Ford Circles</title>
+
+<style>
+  body{
+    background-color:white;
+    }
+  body.black{
+      background-color:black;
+  }
+  #search{
+    position:fixed;
+    top:0px;
+    z-index:1;
+  }
+
+
+</style>
+
+</head>
+<body onload="pageLoad()" style="margin: 0 !important; padding: 0 !important;">
+  <div id="search">
+    Word: <input id="userinput" value="" ></input>
+  </div>
+<!--HTML ELEMENTS HERE -->
+<script src="index.js" id="src"></script>
+</body>
+</html>
