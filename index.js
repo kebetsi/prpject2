@@ -26,7 +26,7 @@ function setupSVG(){
     svgImg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svgImg.setAttribute("width", document.body.clientWidth);
     svgImg.setAttribute("height", document.body.clientWidth/2);
-    svgImg.setAttribute("viewBox", "-0.5 0 2 1");
+    svgImg.setAttribute("viewBox", "-50 0 200 100");
     svgImg.setAttribute("style", "margin: 0 !important; padding: 0 !important;");
     document.body.appendChild(svgImg);
 }
@@ -55,20 +55,44 @@ function addIteration(q,word){
 }
 
 function addFordCircle(p, q,word){
-    addCircle(p/q, 1/(2*q*q), 1/(2*q*q),word);
+    addCircle(p/q, 1/(2*q*q), 1/(2*q*q),word, p);
 }
-function addCircle(x, y, r, c,word){
+function addCircle(x, y, r, c, n){
     y = 1.0 - y; //Flips cartesian coordinate to svg coordinate
     var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("cx",x);
-    circle.setAttribute("cy",y);
-    circle.setAttribute("r",r);
+    circle.setAttribute("cx",x*100);
+    circle.setAttribute("cy",y*100);
+    circle.setAttribute("r",r*100);
     circle.setAttribute("stroke-width",0);
-    circle.setAttribute("fill", c);
+    //circle.setAttribute("fill", c);
 
+    //  <text x="20" y="20" font-family="sans-serif" font-size="20px" fill="red">Hello!</text>
+    var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
     //add some text
-    // --> word
+    text.setAttribute("x",x*100);
+    text.setAttribute("y",y*100);
+    text.setAttribute("font-family","sans-serif");
+    text.setAttribute("font-size", (5/(n+2))+"px");
+    text.setAttribute("fill", "white");
+    text.setAttribute("text-anchor", "middle");
+    text.textContent = c;
     svgImg.appendChild(circle);
+
+    svgImg.appendChild(text);
+
+/*
+    var bb = text.getBBox();
+    if(bb.width != 0) {
+      console.log(bb.width);
+      var widthTransform = r*200 / bb.width;
+      var heightTransform = r*200 / bb.height;
+      var value = widthTransform < heightTransform ? widthTransform : heightTransform;
+      //text.setAttribute("transform", "matrix("+value+", 0, 0, "+value+", 0,0)");
+      //text.setAttribue("font-size", value+"em");
+    }
+*/
+
+    // --> word
 }
 
 function changeAllCircleColor(){
@@ -85,7 +109,7 @@ function zoom(e){
   // console.log(e.deltaY);
 
     if (e.deltaY !== 0) {
-        var zoomFactor = 1.01;
+        var zoomFactor = 1.09;
         var initialViewBox = svgImg.getAttribute("viewBox");
         var viewBoxArr = initialViewBox.split(" ").map(parseFloat);
         var x = viewBoxArr[0];
@@ -182,25 +206,18 @@ function setup() {
   function goWiki(term) {
     counter = counter + 1;
     // checking if the word is within the wikipedia title
-    if (counter < 100) {
+    if (counter < 40) {
       // for keeping initial search in randomized guess
       //let term = userInput.value();
       let url = searchUrl + term;
       loadJSON(url, gotSearch, 'jsonp');
 
     }
-    else {
-      // displaying the number of searches if the word is found
-      window.alert("Word was found");
-      createDiv("Number of searches to find word:");
-      createDiv(counter);
 
-
-    }
   }
 
   function gotSearch(data) {
-    // uncomment if you want to see the data from each page found
+    // to see the data from each page found
     //console.log(data);
     let len = data[1].length;
     let index = floor(random(len));
