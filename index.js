@@ -7,9 +7,8 @@ var globalCounter = 0;
 var _iter = 1;
 var colorHasChanged = false;
 function pageLoad(){
-    window.addEventListener('wheel', function(e) { zoom(e); });
-    window.addEventListener('keydown', function(e) { pan(e); });
-
+    //window.addEventListener('wheel', function(e) { zoom(e); });
+    //window.addEventListener('keydown', function(e) { pan(e); });
 }
 function getElem(idStr){
     return document.getElementById(idStr);

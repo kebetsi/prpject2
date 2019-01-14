@@ -15,20 +15,25 @@
   body.black{
       background-color:black;
   }
-  #search{
-    position:fixed;
-    top:0px;
-    z-index:1;
-  }
+
+.parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+  
 
 
 </style>
 
 </head>
-<body onload="pageLoad()" style="margin: 0 !important; padding: 0 !important;">
-  <div id="search">
-    Word: <input id="userinput" value="" ></input>
-  </div>
+<body onload="pageLoad()">
+    <div class="parent">
+      <label for="name">Word:</label>
+      <input id="userinput" type="text"/>
+    </div>
+  
 <!--HTML ELEMENTS HERE -->
 <script src="index.js" id="src"></script>
 </body>
