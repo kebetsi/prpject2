@@ -16,10 +16,11 @@ function getElem(idStr){
 }
 
 function init(){
+    console.log('init called')
     setupSVG();
     iter = 0;
-    play();
-    addIteration(_iter);
+    //play();
+    //addIteration(_iter);
 }
 
 function setupSVG(){
@@ -32,6 +33,7 @@ function setupSVG(){
 }
 
 function play(word){
+    console.log('play called')
     iter++
     addIteration(iter,word);
     // if(iter<MAX_DEPTH){
@@ -47,6 +49,7 @@ function gcd(a,b) {
 }
 
 function addIteration(q,word){
+    console.log('addIteration called with', q, word)
     for (var p=0; p<=q; p++){
         if(gcd(p, q)==1){
             addFordCircle(p, q,word);
@@ -55,9 +58,11 @@ function addIteration(q,word){
 }
 
 function addFordCircle(p, q,word){
+    console.log('addFordCircle called')
     addCircle(p/q, 1/(2*q*q), 1/(2*q*q),word, p);
 }
 function addCircle(x, y, r, c, n){
+    console.log('addCircle called')
     y = 1.0 - y; //Flips cartesian coordinate to svg coordinate
     var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute("cx",x*100);
@@ -190,7 +195,7 @@ let counter = 0;
 let title = 'null';
 
 function setup() {
-  console.log('setup');
+  console.log('setup yo');
   noCanvas();
   // data from the search box
   userInput = select('#userinput');
