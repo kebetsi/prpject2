@@ -1,0 +1,3 @@
+1. at word search, load only 2,3 circles
+2. when zooming, if smallest circle reaches a certain size, load and display the next N circles and so forth...
+3. the obtained in the `gotSearch` callback contains the titles of the pages and its URLs, which must be used to make the tiles hyperlinks.
